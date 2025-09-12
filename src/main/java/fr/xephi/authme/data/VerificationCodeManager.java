@@ -120,8 +120,18 @@ public class VerificationCodeManager implements SettingsDependent, HasCleanup {
      * @param name the player's name
      */
     public void codeExistOrGenerateNew(String name) {
+        codeExistOrGenerateNew(name, null);
+    }
+
+    /**
+     * Check if a code exists for the player or generates and saves a new one.
+     *
+     * @param name the player's name
+     * @param email the new email or null(when player's email is already set)
+     */
+    public void codeExistOrGenerateNew(String name, String email) {
         if (!hasCode(name)) {
-            generateCode(name);
+            generateCode(name, email);
         }
     }
 
@@ -131,13 +141,26 @@ public class VerificationCodeManager implements SettingsDependent, HasCleanup {
      * @param name the name of the player to generate a code for
      */
     private void generateCode(String name) {
+        generateCode(name, null);
+    }
+
+    /**
+     * Generates a code for the player and returns it.
+     *
+     * @param name the name of the player to generate a code for
+     * @param email the new email or null(when player's email is already set)
+     */
+    private void generateCode(String name, String email) {
         DataSourceValue<String> emailResult = dataSource.getEmail(name);
         if (emailResult.rowExists()) {
-            final String email = emailResult.getValue();
-            if (!Utils.isEmailEmpty(email)) {
+            String verifiedEmail = emailResult.getValue();
+            if (Utils.isEmailEmpty(verifiedEmail)) {
+                verifiedEmail = email;
+            }
+            if (!Utils.isEmailEmpty(verifiedEmail)) {
                 String code = RandomStringUtils.generateNum(6); // 6 digits code
                 verificationCodes.put(name.toLowerCase(Locale.ROOT), code);
-                emailService.sendVerificationMail(name, email, code);
+                emailService.sendVerificationMail(name, verifiedEmail, code);
             }
         }
     }
