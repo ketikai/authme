@@ -34,7 +34,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -116,7 +115,7 @@ class InventoryPacketAdapter extends PacketAdapter {
 
         try {
             protocolManager.sendServerPacket(player, inventoryPacket, false);
-        } catch (InvocationTargetException invocationExc) {
+        } catch (Throwable invocationExc) {
             logger.logException("Error during sending blank inventory", invocationExc);
         }
     }
