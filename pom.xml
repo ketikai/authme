@@ -553,7 +553,7 @@
         <!-- ProtocolLib Repo -->
         <repository>
             <id>dmulloy2-repo-releases</id>
-            <url>https://repo.dmulloy2.net/nexus/repository/releases/</url>
+            <url>https://repo.dmulloy2.net/repository/releases/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -563,7 +563,7 @@
         </repository>
         <repository>
             <id>dmulloy2-repo-snapshots</id>
-            <url>https://repo.dmulloy2.net/nexus/repository/snapshots/</url>
+            <url>https://repo.dmulloy2.net/repository/snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -575,7 +575,7 @@
         <!-- Multiverse Repo -->
         <repository>
             <id>onarandombox-repo-releases</id>
-            <url>https://repo.onarandombox.com/content/repositories/multiverse/</url>
+            <url>https://repo.onarandombox.com/multiverse-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -585,7 +585,7 @@
         </repository>
         <repository>
             <id>onarandombox-repo-snapshots</id>
-            <url>https://repo.onarandombox.com/content/repositories/multiverse-snapshots/</url>
+            <url>https://repo.onarandombox.com/multiverse-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -782,7 +782,7 @@
         <dependency>
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib</artifactId>
-            <version>4.8.0</version>
+            <version>5.3.0</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -861,8 +861,8 @@
         <!-- Multi World plugin, https://www.spigotmc.org/resources/multiverse-core.390/ -->
         <dependency>
             <groupId>com.onarandombox.multiversecore</groupId>
-            <artifactId>Multiverse-Core</artifactId>
-            <version>4.3.1</version>
+            <artifactId>multiverse-core</artifactId>
+            <version>4.3.16</version>
             <type>jar</type>
             <scope>provided</scope>
             <exclusions>
