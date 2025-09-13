@@ -290,9 +290,12 @@ public class AsynchronousLogin implements AsynchronousProcess {
             List<String> auths = dataSource.getAllAuthsByIp(auth.getLastIp());
             displayOtherAccounts(auths, player);
 
-            String email = auth.getEmail();
-            if (service.getProperty(EmailSettings.RECALL_PLAYERS) && Utils.isEmailEmpty(email)) {
-                service.send(player, MessageKey.ADD_EMAIL_MESSAGE);
+            if (service.getProperty(EmailSettings.RECALL_PLAYERS)) {
+                if (Utils.isEmailEmpty(auth.getEmail())) {
+                    service.send(player, MessageKey.ADD_EMAIL_MESSAGE);
+                } else if (auth.isVerified()) {
+                    service.send(player, MessageKey.VERIFY_EMAIL_MESSAGE);
+                }
             }
 
             logger.fine(player.getName() + " logged in " + ip);

@@ -122,6 +122,8 @@ public enum MessageKey {
     /** Please add your email to your account with the command: /email add &lt;yourEmail&gt; &lt;confirmEmail&gt; */
     ADD_EMAIL_MESSAGE("email.add_email_request"),
 
+    VERIFY_EMAIL_MESSAGE("email.verify_email_request"),
+
     /** Forgot your password? Please use the command: /email recovery &lt;yourEmail&gt; */
     FORGOT_PASSWORD_MESSAGE("recovery.forgot_password_hint"),
 

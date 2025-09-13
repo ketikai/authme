@@ -1,6 +1,7 @@
 package fr.xephi.authme.process.email;
 
 import fr.xephi.authme.ConsoleLogger;
+import fr.xephi.authme.data.VerificationCodeManager;
 import fr.xephi.authme.data.auth.PlayerAuth;
 import fr.xephi.authme.data.auth.PlayerCache;
 import fr.xephi.authme.datasource.DataSource;
@@ -39,6 +40,9 @@ public class AsyncAddEmail implements AsynchronousProcess {
     @Inject
     private BukkitService bukkitService;
 
+    @Inject
+    private VerificationCodeManager codeManager;
+
     AsyncAddEmail() {
     }
 
@@ -74,6 +78,10 @@ public class AsyncAddEmail implements AsynchronousProcess {
                     playerCache.updatePlayer(auth);
                     // TODO: send an update when a messaging service will be implemented (ADD_MAIL)
                     service.send(player, MessageKey.EMAIL_ADDED_SUCCESS);
+                    if (codeManager.isVerificationRequired(player) && !playerCache.isVerified(playerName)) {
+                        codeManager.generateCode(playerName);
+                        service.send(player, MessageKey.VERIFICATION_CODE_REQUIRED);
+                    }
                 } else {
                     logger.warning("Could not save email for player '" + player + "'");
                     service.send(player, MessageKey.ERROR);

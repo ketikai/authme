@@ -1,6 +1,8 @@
 package fr.xephi.authme.data.auth;
 
 
+import fr.xephi.authme.util.Utils;
+
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -42,6 +44,18 @@ public class PlayerCache {
      */
     public boolean isAuthenticated(String user) {
         return cache.containsKey(user.toLowerCase(Locale.ROOT));
+    }
+
+    /**
+     * Get whether a player's email is verified (i.e. whether he is present in the player cache and has a verified email).
+     *
+     * @param user player's name
+     *
+     * @return true if player is logged in and has a verified email, false otherwise.
+     */
+    public boolean isVerified(String user) {
+        PlayerAuth auth = cache.get(user.toLowerCase(Locale.ROOT));
+        return auth != null && !Utils.isEmailEmpty(auth.getEmail()) && auth.isVerified();
     }
 
     /**

@@ -29,7 +29,7 @@ public class ChangeEmailCommand extends PlayerCommand {
         final String playerName = player.getName();
         // Check if the user has been verified or not
         if (codeManager.isVerificationRequired(player)) {
-            codeManager.codeExistOrGenerateNew(playerName);
+            codeManager.generateCode(playerName);
             commonService.send(player, MessageKey.VERIFICATION_CODE_REQUIRED);
             return;
         }

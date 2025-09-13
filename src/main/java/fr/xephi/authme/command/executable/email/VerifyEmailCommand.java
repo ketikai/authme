@@ -1,10 +1,12 @@
-package fr.xephi.authme.command.executable.verification;
+package fr.xephi.authme.command.executable.email;
 
 import fr.xephi.authme.ConsoleLogger;
 import fr.xephi.authme.command.PlayerCommand;
 import fr.xephi.authme.data.VerificationCodeManager;
+import fr.xephi.authme.data.auth.PlayerCache;
 import fr.xephi.authme.output.ConsoleLoggerFactory;
 import fr.xephi.authme.message.MessageKey;
+import fr.xephi.authme.process.Management;
 import fr.xephi.authme.service.CommonService;
 import org.bukkit.entity.Player;
 
@@ -14,12 +16,18 @@ import java.util.List;
 /**
  * Used to complete the email verification process.
  */
-public class VerificationCommand extends PlayerCommand {
+public class VerifyEmailCommand extends PlayerCommand {
 
-    private final ConsoleLogger logger = ConsoleLoggerFactory.get(VerificationCommand.class);
+    private final ConsoleLogger logger = ConsoleLoggerFactory.get(VerifyEmailCommand.class);
+
+    @Inject
+    private Management management;
 
     @Inject
     private CommonService commonService;
+
+    @Inject
+    private PlayerCache playerCache;
 
     @Inject
     private VerificationCodeManager codeManager;
@@ -35,8 +43,12 @@ public class VerificationCommand extends PlayerCommand {
         }
 
         if (codeManager.isVerificationRequired(player)) {
-            if (codeManager.isCodeRequired(playerName)) {
+            if (arguments.isEmpty() && !playerCache.isVerified(playerName)) {
+                codeManager.generateCode(playerName);
+                commonService.send(player, MessageKey.VERIFICATION_CODE_REQUIRED);
+            } else if (codeManager.isCodeRequired(playerName)) {
                 if (codeManager.checkCode(playerName, arguments.get(0))) {
+                    management.performVerifyEmail(player);
                     commonService.send(player, MessageKey.VERIFICATION_CODE_VERIFIED);
                 } else {
                     commonService.send(player, MessageKey.INCORRECT_VERIFICATION_CODE);

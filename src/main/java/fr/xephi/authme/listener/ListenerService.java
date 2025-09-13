@@ -93,7 +93,7 @@ class ListenerService implements SettingsDependent {
      * @return true if the player may play, false otherwise
      */
     private boolean checkAuth(String name) {
-        if (validationService.isUnrestricted(name) || playerCache.isAuthenticated(name)) {
+        if (validationService.isUnrestricted(name) || playerCache.isVerified(name)) {
             return true;
         }
         if (!isRegistrationForced && !dataSource.isAuthAvailable(name)) {

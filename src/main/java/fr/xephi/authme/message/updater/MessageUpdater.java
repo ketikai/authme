@@ -105,8 +105,11 @@ public class MessageUpdater {
         for (Property<String> property : configurationData.getAllMessageProperties()) {
             final String key = property.getPath();
             if (configurationData.getValue(property) == null) {
-                configurationData.setValue(property, jarMessageSource.getMessageFromJar(property));
-                addedKeys.add(key);
+                String messageFromJar = jarMessageSource.getMessageFromJar(property);
+                if (messageFromJar != null) {
+                    configurationData.setValue(property, messageFromJar);
+                    addedKeys.add(key);
+                }
             }
         }
         if (!addedKeys.isEmpty()) {

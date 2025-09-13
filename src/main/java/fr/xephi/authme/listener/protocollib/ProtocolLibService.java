@@ -125,7 +125,7 @@ public class ProtocolLibService implements SettingsDependent {
         if (oldProtectInventory && !protectInvBeforeLogin && inventoryPacketAdapter != null) {
             inventoryPacketAdapter.unregister();
             for (Player onlinePlayer : bukkitService.getOnlinePlayers()) {
-                if (!playerCache.isAuthenticated(onlinePlayer.getName())) {
+                if (!playerCache.isVerified(onlinePlayer.getName())) {
                     onlinePlayer.updateInventory();
                 }
             }

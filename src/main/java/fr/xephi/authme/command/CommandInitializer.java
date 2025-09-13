@@ -48,7 +48,7 @@ import fr.xephi.authme.command.executable.totp.RemoveTotpCommand;
 import fr.xephi.authme.command.executable.totp.TotpBaseCommand;
 import fr.xephi.authme.command.executable.totp.TotpCodeCommand;
 import fr.xephi.authme.command.executable.unregister.UnregisterCommand;
-import fr.xephi.authme.command.executable.verification.VerificationCommand;
+import fr.xephi.authme.command.executable.email.VerifyEmailCommand;
 import fr.xephi.authme.permission.AdminPermission;
 import fr.xephi.authme.permission.DebugSectionPermissions;
 import fr.xephi.authme.permission.PlayerPermission;
@@ -164,9 +164,9 @@ public class CommandInitializer {
             .labels("verification")
             .description("Verification command")
             .detailedDescription("Command to complete the verification process for AuthMeReloaded.")
-            .withArgument("code", "The code", MANDATORY)
+            .withArgument("code", "The code", OPTIONAL)
             .permission(PlayerPermission.VERIFICATION_CODE)
-            .executableCommand(VerificationCommand.class)
+            .executableCommand(VerifyEmailCommand.class)
             .register();
 
         List<CommandDescription> baseCommands = ImmutableList.of(authMeBase, emailBase, loginBase, logoutBase,
@@ -531,6 +531,17 @@ public class CommandInitializer {
             .withArgument("newEmail", "New email address", MANDATORY)
             .permission(PlayerPermission.CHANGE_EMAIL)
             .executableCommand(ChangeEmailCommand.class)
+            .register();
+
+        // Register the base verification code command
+        CommandDescription.builder()
+            .parent(emailBase)
+            .labels("verify", "verifyemail", "verifymail")
+            .description("Verification command")
+            .detailedDescription("Command to complete the verification process for AuthMeReloaded.")
+            .withArgument("code", "The code", OPTIONAL)
+            .permission(PlayerPermission.VERIFICATION_CODE)
+            .executableCommand(VerifyEmailCommand.class)
             .register();
 
         // Register the recover command

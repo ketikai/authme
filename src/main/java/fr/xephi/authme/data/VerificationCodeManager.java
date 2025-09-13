@@ -130,13 +130,15 @@ public class VerificationCodeManager implements SettingsDependent, HasCleanup {
      *
      * @param name the name of the player to generate a code for
      */
-    private void generateCode(String name) {
+    public void generateCode(String name) {
         DataSourceValue<String> emailResult = dataSource.getEmail(name);
         if (emailResult.rowExists()) {
             final String email = emailResult.getValue();
             if (!Utils.isEmailEmpty(email)) {
                 String code = RandomStringUtils.generateNum(6); // 6 digits code
-                verificationCodes.put(name.toLowerCase(Locale.ROOT), code);
+                String key = name.toLowerCase(Locale.ROOT);
+                verifiedPlayers.remove(key);
+                verificationCodes.put(key, code);
                 emailService.sendVerificationMail(name, email, code);
             }
         }
@@ -164,7 +166,9 @@ public class VerificationCodeManager implements SettingsDependent, HasCleanup {
      * @param name the name of the player to generate a code for
      */
     public void verify(String name) {
-        verifiedPlayers.add(name.toLowerCase(Locale.ROOT));
+        String key = name.toLowerCase(Locale.ROOT);
+        verificationCodes.remove(key);
+        verifiedPlayers.add(key);
     }
 
     /**
@@ -173,7 +177,9 @@ public class VerificationCodeManager implements SettingsDependent, HasCleanup {
      * @param name the name of the player to generate a code for
      */
     public void unverify(String name){
-        verifiedPlayers.remove(name.toLowerCase(Locale.ROOT));
+        String key = name.toLowerCase(Locale.ROOT);
+        verificationCodes.remove(key);
+        verifiedPlayers.remove(key);
     }
 
     @Override

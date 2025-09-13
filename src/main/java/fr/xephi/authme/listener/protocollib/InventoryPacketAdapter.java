@@ -82,7 +82,7 @@ class InventoryPacketAdapter extends PacketAdapter {
     }
 
     private boolean shouldHideInventory(String playerName) {
-        return !playerCache.isAuthenticated(playerName) && dataSource.isAuthAvailable(playerName);
+        return !playerCache.isVerified(playerName) && dataSource.isAuthAvailable(playerName);
     }
 
     public void unregister() {

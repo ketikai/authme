@@ -103,7 +103,7 @@ public class EmailService {
             return false;
         }
 
-        String mailText = replaceTagsForVerificationEmail(settings.getVerificationEmailMessage(), name, code,
+        String mailText = replaceTagsForVerificationEmail(settings.getVerifyEmailMessage(), name, code,
             settings.getProperty(SecuritySettings.VERIFICATION_CODE_EXPIRATION_MINUTES));
         return sendMailSsl.sendEmail(mailText, email);
     }

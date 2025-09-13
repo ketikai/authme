@@ -22,7 +22,7 @@ public class Settings extends SettingsManagerImpl {
     private final ConsoleLogger logger = ConsoleLoggerFactory.get(Settings.class);
     private final File pluginFolder;
     private String passwordEmailMessage;
-    private String verificationEmailMessage;
+    private String verifyEmailMessage;
     private String recoveryCodeEmailMessage;
 
     /**
@@ -50,12 +50,12 @@ public class Settings extends SettingsManagerImpl {
     }
 
     /**
-     * Return the text for verification emails (before sensitive commands can be used).
+     * Return the text for verifying emails (before sensitive commands can be used).
      *
      * @return The email message
      */
-    public String getVerificationEmailMessage() {
-        return verificationEmailMessage;
+    public String getVerifyEmailMessage() {
+        return verifyEmailMessage;
     }
 
     /**
@@ -69,7 +69,7 @@ public class Settings extends SettingsManagerImpl {
 
     private void loadSettingsFromFiles() {
         passwordEmailMessage = readFile("email.html");
-        verificationEmailMessage = readFile("verification_code_email.html");
+        verifyEmailMessage = readFile("verify_code_email.html");
         recoveryCodeEmailMessage = readFile("recovery_code_email.html");
     }
 
