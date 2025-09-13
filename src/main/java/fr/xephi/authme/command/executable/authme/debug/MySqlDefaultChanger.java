@@ -289,7 +289,10 @@ class MySqlDefaultChanger implements DebugSection {
             DB_LAST_IP_DEFAULT),
 
         EMAIL(DatabaseSettings.MYSQL_COL_EMAIL,
-            "VARCHAR(255)", "VARCHAR(255) NOT NULL DEFAULT 'your@email.com'", DB_EMAIL_DEFAULT);
+            "VARCHAR(255)", "VARCHAR(255) NOT NULL DEFAULT 'your@email.com'", DB_EMAIL_DEFAULT),
+
+        IS_VERIFIED(DatabaseSettings.MYSQL_COL_IS_VERIFIED,
+            "SMALLINT", "SMALLINT NOT NULL DEFAULT 0", 0);
 
         private final Property<String> columnNameProperty;
         private final String nullableDefinition;

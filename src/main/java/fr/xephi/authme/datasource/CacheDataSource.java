@@ -184,6 +184,15 @@ public class CacheDataSource implements DataSource {
     }
 
     @Override
+    public boolean updateVerified(PlayerAuth auth) {
+        boolean result = source.updateVerified(auth);
+        if (result) {
+            cachedAuths.refresh(auth.getNickname());
+        }
+        return result;
+    }
+
+    @Override
     public List<String> getAllAuthsByIp(String ip) {
         return source.getAllAuthsByIp(ip);
     }

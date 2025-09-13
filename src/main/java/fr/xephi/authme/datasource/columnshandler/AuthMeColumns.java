@@ -3,8 +3,6 @@ package fr.xephi.authme.datasource.columnshandler;
 import fr.xephi.authme.data.auth.PlayerAuth;
 import fr.xephi.authme.settings.properties.DatabaseSettings;
 
-import java.util.UUID;
-
 import static fr.xephi.authme.datasource.columnshandler.AuthMeColumnsFactory.ColumnOptions.DEFAULT_FOR_NULL;
 import static fr.xephi.authme.datasource.columnshandler.AuthMeColumnsFactory.ColumnOptions.OPTIONAL;
 import static fr.xephi.authme.datasource.columnshandler.AuthMeColumnsFactory.createDouble;
@@ -32,6 +30,9 @@ public final class AuthMeColumns {
 
     public static final PlayerAuthColumn<String> EMAIL = createString(
         DatabaseSettings.MYSQL_COL_EMAIL, PlayerAuth::getEmail, DEFAULT_FOR_NULL);
+
+    public static final PlayerAuthColumn<Integer> IS_VERIFIED = createInteger(
+        DatabaseSettings.MYSQL_COL_IS_VERIFIED, auth -> auth.isVerified() ? 1 : 0);
 
     public static final PlayerAuthColumn<String> LAST_IP = createString(
         DatabaseSettings.MYSQL_COL_LAST_IP, PlayerAuth::getLastIp);

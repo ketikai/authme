@@ -135,6 +135,8 @@ public interface DataSource extends Reloadable {
      */
     boolean updateEmail(PlayerAuth auth);
 
+    boolean updateVerified(PlayerAuth auth);
+
     /**
      * Close the underlying connections to the data source.
      */

@@ -231,6 +231,11 @@ public class PostgreSqlDataSource extends AbstractSqlDataSource {
                     + col.EMAIL + " VARCHAR(255);");
             }
 
+            if (isColumnMissing(md, col.IS_VERIFIED)) {
+                st.executeUpdate("ALTER TABLE " + tableName + " ADD COLUMN "
+                    + col.IS_VERIFIED + " SMALLINT NOT NULL DEFAULT '0';");
+            }
+
             if (isColumnMissing(md, col.IS_LOGGED)) {
                 st.executeUpdate("ALTER TABLE " + tableName + " ADD COLUMN "
                     + col.IS_LOGGED + " SMALLINT NOT NULL DEFAULT '0';");
@@ -458,6 +463,7 @@ public class PostgreSqlDataSource extends AbstractSqlDataSource {
             .lastLogin(getNullableLong(row, col.LAST_LOGIN))
             .lastIp(row.getString(col.LAST_IP))
             .email(row.getString(col.EMAIL))
+            .verified(row.getInt(col.IS_VERIFIED) > 0)
             .registrationDate(row.getLong(col.REGISTRATION_DATE))
             .registrationIp(row.getString(col.REGISTRATION_IP))
             .groupId(group)

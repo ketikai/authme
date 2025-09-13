@@ -31,6 +31,7 @@ public class PlayerAuth {
     private HashedPassword password;
     private String totpKey;
     private String email;
+    private boolean verified;
     private String lastIp;
     private int groupId;
     private Long lastLogin;
@@ -145,6 +146,14 @@ public class PlayerAuth {
         this.email = email;
     }
 
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
     public HashedPassword getPassword() {
         return password;
     }
@@ -220,6 +229,7 @@ public class PlayerAuth {
         private String totpKey;
         private String lastIp;
         private String email;
+        private boolean verified = false;
         private int groupId = -1;
         private Long lastLogin;
         private String registrationIp;
@@ -245,6 +255,7 @@ public class PlayerAuth {
             auth.password = Optional.ofNullable(password).orElse(new HashedPassword(""));
             auth.totpKey = totpKey;
             auth.email = DB_EMAIL_DEFAULT.equals(email) ? null : email;
+            auth.verified = verified;
             auth.lastIp = lastIp; // Don't check against default value 127.0.0.1 as it may be a legit value
             auth.groupId = groupId;
             auth.lastLogin = isEqualTo(lastLogin, DB_LAST_LOGIN_DEFAULT) ? null : lastLogin;
@@ -352,6 +363,11 @@ public class PlayerAuth {
 
         public Builder email(String email) {
             this.email = email;
+            return this;
+        }
+
+        public Builder verified(boolean verified) {
+            this.verified = verified;
             return this;
         }
 

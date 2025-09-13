@@ -109,7 +109,13 @@ public abstract class AbstractSqlDataSource implements DataSource {
 
     @Override
     public boolean updateEmail(PlayerAuth auth) {
-        return columnsHandler.update(auth, AuthMeColumns.EMAIL);
+        auth.setVerified(false);
+        return columnsHandler.update(auth, AuthMeColumns.EMAIL, AuthMeColumns.IS_VERIFIED);
+    }
+
+    @Override
+    public boolean updateVerified(PlayerAuth auth) {
+        return columnsHandler.update(auth, AuthMeColumns.IS_VERIFIED);
     }
 
     @Override
