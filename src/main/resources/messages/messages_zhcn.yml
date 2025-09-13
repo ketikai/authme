@@ -83,6 +83,7 @@ on_join_validation:
 
 # Email
 email:
+    verify_email_request: '&8[&6玩家系统&8] &c请输入“/email verify”以发送验证码到您的邮箱'
     add_email_request: '&8[&6玩家系统&8] &c请输入“/email add <你的邮箱> <再输入一次以确认>”以添加您的邮箱到此帐号'
     usage_email_add: '&8[&6玩家系统&8] &f用法: /email add <邮箱> <确认邮箱地址> '
     usage_email_change: '&8[&6玩家系统&8] &f用法: /email change <旧邮箱> <新邮箱> '

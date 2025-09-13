@@ -85,6 +85,7 @@ on_join_validation:
 
 # Email
 email:
+    verify_email_request: '&8[&6玩家系统&8] &c请输入“/email verify”以发送验证码到您的邮箱'
     add_email_request: '&3다음 명령어로 계정에 이메일 주소를 추가하세요: /email add <이메일 주소> <이메일 주소 확인>'
     usage_email_add: '&c사용법: /email add <이메일 주소> <이메일 주소 확인>'
     usage_email_change: '&c사용법: /email change <예전 이메일 주소> <새 이메일 주소>'

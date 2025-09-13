@@ -83,6 +83,7 @@ on_join_validation:
 
 # Email
 email:
+    verify_email_request: '&8[&6玩家系统&8] &c请输入“/email verify”以发送验证码到您的邮箱'
     add_email_request: '&3Моля добавете имейл адрес към своят акаунт: /email add имейл имейл'
     usage_email_add: '&cКоманда: /email add имейл имейл'
     usage_email_change: '&cКоманда: /email change Стар-Имейл Нов-Имейл'

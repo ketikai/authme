@@ -95,6 +95,7 @@ email:
     already_used: '&4See meiliaadress on juba kasutuses!'
     send_failure: 'Meili ei õnnestunud saata. Teata sellest administraatorit.'
     no_email_for_account: '&2Selle kasutajaga ei ole seotud ühtegi meiliaadressi.'
+    verify_email_request: '&8[&6玩家系统&8] &c请输入“/email verify”以发送验证码到您的邮箱'
     add_email_request: '&3Palun seo oma kasutajaga meiliaadress kasutades käsklust: /email add <sinuEmail> <kinnitaEmail>'
     change_password_expired: 'Selle käsklusega ei saa sa enam parooli muuta.'
     email_cooldown_error: '&cMeil on juba saadetud. Sa pead ootama %time enne kui saad küsida uue saatmist.'

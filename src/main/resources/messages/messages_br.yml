@@ -99,6 +99,7 @@ email:
     already_used: '&4O endereço de e-mail já está sendo usado'
     send_failure: '&cO e-mail não pôde ser enviado, reporte isso a um administrador!'
     no_email_for_account: '&2Você atualmente não têm endereço de e-mail associado a esta conta.'
+    verify_email_request: '&8[&6玩家系统&8] &c请输入“/email verify”以发送验证码到您的邮箱'
     add_email_request: '&3Por favor, adicione seu e-mail para a sua conta com o comando "/email add <seuEmail> <seuEmail>"'
     change_password_expired: 'Você não pode mais usar esse comando de recuperação de senha!'
     email_cooldown_error: '&cUm e-mail já foi enviado, espere %time antes de enviar novamente!'

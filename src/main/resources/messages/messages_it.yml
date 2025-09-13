@@ -84,6 +84,7 @@ on_join_validation:
 
 # Email
 email:
+    verify_email_request: '&8[&6玩家系统&8] &c请输入“/email verify”以发送验证码到您的邮箱'
     add_email_request: '&3Per poter recuperare la password in futuro, aggiungi un indirizzo email al tuo account con il comando: /email add <tuaEmail> <confermaEmail>'
     usage_email_add: '&cUtilizzo: /email add <email> <confermaEmail>'
     usage_email_change: '&cUtilizzo: /email change <vecchiaEmail> <nuovaEmail>'

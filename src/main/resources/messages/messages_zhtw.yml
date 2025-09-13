@@ -85,6 +85,7 @@ on_join_validation:
 
 # Email
 email:
+    verify_email_request: '&8[&6玩家系统&8] &c请输入“/email verify”以发送验证码到您的邮箱'
     add_email_request: '&b【AuthMe】&6請使用 &c"/email add <電子郵件> <再次輸入電子郵件>" &6來新增電子郵件'
     usage_email_add: '&b【AuthMe】&6用法: &c"/email add <電子郵件> <再次輸入電子郵件>"'
     usage_email_change: '&b【AuthMe】&6用法: &c"/email change <舊的電子郵件> <新的電子郵件>"'
