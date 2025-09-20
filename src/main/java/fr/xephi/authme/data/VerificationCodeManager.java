@@ -63,7 +63,7 @@ public class VerificationCodeManager implements SettingsDependent, HasCleanup {
         return canSendMail
             && !isPlayerVerified(name)
             && permissionsManager.hasPermission(player, PlayerPermission.VERIFICATION_CODE)
-            && hasEmail(name);
+            && (hasEmail(name) || hasEmail(name));
     }
 
     /**
